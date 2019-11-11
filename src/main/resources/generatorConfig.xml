@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 指定数据库驱动包 -->
+    <!-- <classPathEntry location="~\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar" /> -->
+    <context id="MySQLTables" targetRuntime="MyBatis3">
+        <!-- 配置生成pojo的序列化的插件  -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+        <!-- 配置生成pojo的toString()方法的插件 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+        <!-- 取消生成的注释 -->
+        <!-- <commentGenerator>
+            <property name="suppressDate" value="false"/>
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator> -->
+        <!-- 通过type指定自定义的注释 -->
+        <commentGenerator type="main.MyCommentGenerator">
+            <!-- 不要开启，否则将不会使用自定义注释 -->
+            <!-- <property name="suppressAllComments" value="true"> -->
+        </commentGenerator>
+
+
+        <!-- 数据库连接参数 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://ip:port/dbname?characterEncoding=utf-8"
+                        userId="name"
+                        password="pass">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 指定实体类 -->
+        <javaModelGenerator targetPackage="com.zr.entity"
+                            targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 创建SQL的Mapper文件 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject=".\src\main\resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 指定Mapper文件XMLMAPPER生成xml ANNOTATEDMAPPER为注解  -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.codecoord.dao"
+                             targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 指定数据库哪些表生成代码 -->
+        <table tableName="XXX"></table>
+
+    </context>
+</generatorConfiguration>
