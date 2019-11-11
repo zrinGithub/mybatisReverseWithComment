@@ -1,1 +1,5 @@
 # mybatisReverseWithComment
+
+generatorConfig.xml中配置数据库连接
+
+MyCommentGenerator编写自定义的注解生成类，addFieldComment方法中注入数据库注解
